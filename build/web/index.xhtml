@@ -4,35 +4,71 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
- <f:loadBundle basename="ch.hearc.ig.odi.peoplelist.business.french" var="msg"/>
+    <f:loadBundle basename="ch.hearc.ig.odi.peoplelist.business.french" var="msg"/>
     <h:head>
         <title>#{msg.pageHeader}</title>
     </h:head>
     <h:body>
-              
-          <h:dataTable value="#{peopleListBean.peopleList}" var="person">
+
+        <h:dataTable value="#{peopleListBean.peopleList}" var="person">
             <h:column>  
                 <f:facet name="header">#{msg.id}</f:facet>
-                #{person.id}
+                    #{person.id}
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg.firstName}</f:facet>
-                #{person.firstName}
+                    #{person.firstName}
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg.lastName}</f:facet>
-                #{person.lastName}
+                    #{person.lastName}
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg.gender}</f:facet>
-                #{person.gender}
+                    #{person.gender}
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg.birthDate}</f:facet>
-                #{person.birthDate}
+                    #{person.birthDate}
             </h:column>
         </h:dataTable>
-  
+
+        <h:form>
+            <fieldset>
+                <legend>#{msg.ajoutP}</legend>
+                <h:outputLabel>#{msg.firstName}</h:outputLabel>
+                <h:inputText id="fName" value="#{addPersonBean.person.firstName}" required="true" size="20" maxlength="60" />
+                <br />
+
+                <h:outputLabel>#{msg.lastName}</h:outputLabel>
+                <h:inputText id="lName" value="#{addPersonBean.person.lastName}" required="true" size="20" maxlength="60" />
+                <br />
+
+                <h:outputLabel for="gender">#{msg.gender}</h:outputLabel>
+                <h:inputText id="gender" value="#{addPersonBean.person.gender}" required="true" size="20" maxlength="60" />
+                <br />
+
+                <h:outputLabel>#{msg.married}</h:outputLabel>
+                <h:selectOneRadio value="#{addPersonBean.person.married}">
+                    <f:selectItem  itemLabel="Oui" itemValue="Oui"></f:selectItem>
+                    <f:selectItem itemLabel="Non" itemValue="Non"></f:selectItem>
+                </h:selectOneRadio>
+                
+                <br />
+
+                <h:outputLabel>#{msg.birthDate}</h:outputLabel>
+                <h:inputText id="birthDate" value="#{addPersonBean.person.birthDate}" required="true" size="20" maxlength="60" >
+     <f:convertDateTime pattern="dd.mm.yyyy"/> 
+                </h:inputText>
+                <br />
+                
+                <br/>
+                <h:commandButton value="Ajouter" action="#{addPersonBean.savePerson()}" />
+                <br/>
+
+            </fieldset>
+        </h:form> 
+
 
     </h:body>
 </html>

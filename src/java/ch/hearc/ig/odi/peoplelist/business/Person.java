@@ -3,7 +3,7 @@ package ch.hearc.ig.odi.peoplelist.business;
 import java.util.Date;
 
 public class Person {
-    
+
     private Long id;
     private String gender;
     private String firstName;
@@ -46,7 +46,7 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Boolean isMarried() {
+    public Boolean getMarried() {
         return married;
     }
 
@@ -61,6 +61,5 @@ public class Person {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
-    
+
 }
