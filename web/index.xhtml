@@ -2,73 +2,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <f:loadBundle basename="ch.hearc.ig.odi.peoplelist.business.french" var="msg"/>
     <h:head>
-        <title>#{msg.pageHeader}</title>
+        <ui:define name="top">#{msg.pageHeader}</ui:define>
     </h:head>
     <h:body>
+        <ui:composition template="/main.xhtml">
 
-        <h:dataTable value="#{peopleListBean.peopleList}" var="person">
-            <h:column>  
-                <f:facet name="header">#{msg.id}</f:facet>
-                    #{person.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">#{msg.firstName}</f:facet>
-                    #{person.firstName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">#{msg.lastName}</f:facet>
-                    #{person.lastName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">#{msg.gender}</f:facet>
-                    #{person.gender}
-            </h:column>
-            <h:column>
-                <f:facet name="header">#{msg.birthDate}</f:facet>
-                    #{person.birthDate}
-            </h:column>
-        </h:dataTable>
-
-        <h:form>
-            <fieldset>
-                <legend>#{msg.ajoutP}</legend>
-                <h:outputLabel>#{msg.firstName}</h:outputLabel>
-                <h:inputText id="fName" value="#{addPersonBean.person.firstName}" required="true" size="20" maxlength="60" />
-                <br />
-
-                <h:outputLabel>#{msg.lastName}</h:outputLabel>
-                <h:inputText id="lName" value="#{addPersonBean.person.lastName}" required="true" size="20" maxlength="60" />
-                <br />
-
-                <h:outputLabel for="gender">#{msg.gender}</h:outputLabel>
-                <h:inputText id="gender" value="#{addPersonBean.person.gender}" required="true" size="20" maxlength="60" />
-                <br />
-
-                <h:outputLabel>#{msg.married}</h:outputLabel>
-                <h:selectOneRadio value="#{addPersonBean.person.married}">
-                    <f:selectItem  itemLabel="Oui" itemValue="Oui"></f:selectItem>
-                    <f:selectItem itemLabel="Non" itemValue="Non"></f:selectItem>
-                </h:selectOneRadio>
-                
-                <br />
-
-                <h:outputLabel>#{msg.birthDate}</h:outputLabel>
-                <h:inputText id="birthDate" value="#{addPersonBean.person.birthDate}" required="true" size="20" maxlength="60" >
-     <f:convertDateTime pattern="dd.mm.yyyy"/> 
-                </h:inputText>
-                <br />
-                
-                <br/>
-                <h:commandButton value="Ajouter" action="#{addPersonBean.savePerson()}" />
-                <br/>
-
-            </fieldset>
-        </h:form> 
+            <ui:define name="top">#{msg.pageHeader}</ui:define>
 
 
+            <ui:define name="content">
+                <h:dataTable value="#{peopleListBean.peopleList}" var="person">
+                    <h:column>  
+                        <f:facet name="header">#{msg.id}</f:facet>
+                            #{person.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.firstName}</f:facet>
+                            #{person.firstName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.lastName}</f:facet>
+                            #{person.lastName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.gender}</f:facet>
+                            #{person.gender}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.birthDate}</f:facet>
+                            #{person.birthDate}
+                    </h:column>
+                </h:dataTable>
+            </ui:define>
+
+            <ui:define name="formulaire">
+                <h:form>
+                    <fieldset>
+                        <legend>#{msg.ajoutP}</legend>
+                        <h:outputLabel>#{msg.firstName}</h:outputLabel>
+                        <h:inputText id="fName" value="#{addPersonBean.person.firstName}" required="true" size="20" maxlength="60" />
+                        <br />
+
+                        <h:outputLabel>#{msg.lastName}</h:outputLabel>
+                        <h:inputText id="lName" value="#{addPersonBean.person.lastName}" required="true" size="20" maxlength="60" />
+                        <br />
+
+                        <h:outputLabel for="gender">#{msg.gender}</h:outputLabel>
+                        <h:inputText id="gender" value="#{addPersonBean.person.gender}" required="true" size="20" maxlength="60" />
+                        <br />
+
+                        <h:outputLabel>#{msg.married}</h:outputLabel>
+                        <h:selectOneRadio value="#{addPersonBean.person.married}">
+                            <f:selectItem  itemLabel="Oui" itemValue="Oui"></f:selectItem>
+                            <f:selectItem itemLabel="Non" itemValue="Non"></f:selectItem>
+                        </h:selectOneRadio>
+
+                        <br />
+
+                        <h:outputLabel>#{msg.birthDate}</h:outputLabel>
+                        <h:inputText id="birthDate" value="#{addPersonBean.person.birthDate}" required="true" size="20" maxlength="60" >
+                            <f:convertDateTime pattern="dd.mm.yyyy"/> 
+                        </h:inputText>
+                        <br />
+
+                        <br/>
+                        <h:commandButton value="Ajouter" action="#{addPersonBean.savePerson()}" />
+                        <br/>
+
+                    </fieldset>
+                </h:form> 
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
